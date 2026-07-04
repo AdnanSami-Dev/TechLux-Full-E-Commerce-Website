@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-primary: #C9A24B;
+  --color-primary-foreground: #FFFFFF;
+  --color-primary-light: #E7D4A4;
+  --color-primary-dark: #9B7D3A;
+  --color-secondary: #0B1E33;
+  --color-secondary-foreground: #FFFFFF;
+  --color-secondary-light: #1E3A5F;
+  --color-accent: #8B6239;
+  --color-accent-foreground: #FFFFFF;
+  --color-success: #2E6B4F;
+  --color-success-foreground: #FFFFFF;
+  --color-warning: #C98A2C;
+  --color-warning-foreground: #FFFFFF;
+  --color-danger: #B84A4A;
+  --color-danger-foreground: #FFFFFF;
+  --color-background: #FBF9F4;
+  --color-text-primary: #14212E;
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
+  --color-border: #E5E7EB;
+  --color-input: #FFFFFF;
+  --color-card: #FFFFFF;
+  --color-muted: #F3F4F6;
+
+  /* Font Families */
+  --font-sans: Inter, system-ui, sans-serif;
+
+  /* Spacing (Tailwind defaults are fine, we're just defining CSS variables) */
+}
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Typography Classes */
+.h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+}
+.h2 {
+  @apply text-3xl md:text-4xl font-bold tracking-tight;
+}
+.h3 {
+  @apply text-2xl font-semibold;
+}
+.h4 {
+  @apply text-xl font-semibold;
+}
+.body-lg {
+  @apply text-lg;
+}
+.body {
+  @apply text-base;
+}
+.body-sm {
+  @apply text-sm;
+}
+.caption {
+  @apply text-xs text-text-secondary;
+}
