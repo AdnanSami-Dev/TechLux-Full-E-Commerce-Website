@@ -26,9 +26,12 @@ export default function Button({
   className,
   disabled = false,
   asChild = false,
+  leftIcon,
+  rightIcon,
+  children,
   ...props
 }) {
-  const Comp = asChild ? (props.children.type || "button") : "button";
+  const Comp = asChild ? (children?.type || "button") : "button";
   return (
     <Comp
       className={cn(
@@ -39,6 +42,10 @@ export default function Button({
       )}
       disabled={disabled}
       {...props}
-    />
+    >
+      {leftIcon && leftIcon}
+      {children}
+      {rightIcon && rightIcon}
+    </Comp>
   );
 }

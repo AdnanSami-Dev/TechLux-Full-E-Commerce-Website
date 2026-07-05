@@ -9,7 +9,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Button from "../ui/Button";
 
-export default function FlashSale() {
+export default function FlashSale({
+  onQuickView,
+  onWishlistToggle,
+  onCompareToggle,
+  onAddToCart,
+  wishlist = [],
+  compareList = [],
+}) {
   return (
     <section className="py-12 md:py-16 bg-gradient-to-r from-danger/5 to-warning/5">
       <Container>
@@ -44,7 +51,17 @@ export default function FlashSale() {
         >
           {flashSaleProducts.map((product) => (
             <SwiperSlide key={product.id}>
-              <ProductCard product={product} />
+              <ProductCard
+                product={{
+                  ...product,
+                  isWishlisted: wishlist.includes(product.id),
+                  isCompared: compareList.includes(product.id),
+                }}
+                onQuickView={onQuickView}
+                onWishlistToggle={onWishlistToggle}
+                onCompareToggle={onCompareToggle}
+                onAddToCart={onAddToCart}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

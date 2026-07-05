@@ -15,6 +15,12 @@ export default function ProductSection({
   showViewAll = true,
   viewAllText = "View All",
   layout = "grid",
+  onQuickView,
+  onWishlistToggle,
+  onCompareToggle,
+  onAddToCart,
+  wishlist = [],
+  compareList = [],
 }) {
   return (
     <section className="py-12 md:py-16">
@@ -34,7 +40,17 @@ export default function ProductSection({
             >
               {products.map((product) => (
                 <SwiperSlide key={product.id}>
-                  <ProductCard product={product} />
+                  <ProductCard
+                    product={{
+                      ...product,
+                      isWishlisted: wishlist.includes(product.id),
+                      isCompared: compareList.includes(product.id),
+                    }}
+                    onQuickView={onQuickView}
+                    onWishlistToggle={onWishlistToggle}
+                    onCompareToggle={onCompareToggle}
+                    onAddToCart={onAddToCart}
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -48,7 +64,17 @@ export default function ProductSection({
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <ProductCard product={product} />
+                  <ProductCard
+                    product={{
+                      ...product,
+                      isWishlisted: wishlist.includes(product.id),
+                      isCompared: compareList.includes(product.id),
+                    }}
+                    onQuickView={onQuickView}
+                    onWishlistToggle={onWishlistToggle}
+                    onCompareToggle={onCompareToggle}
+                    onAddToCart={onAddToCart}
+                  />
                 </motion.div>
               ))}
             </div>

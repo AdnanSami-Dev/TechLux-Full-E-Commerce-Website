@@ -3,6 +3,7 @@ import Container from "../ui/Container";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
 import { FiSearch, FiHeart, FiShoppingCart, FiColumns, FiMenu } from "react-icons/fi";
+import { useSelector } from "react-redux";
 import SearchModal from "./SearchModal";
 import CartDrawer from "./CartDrawer";
 import WishlistDrawer from "./WishlistDrawer";
@@ -12,6 +13,7 @@ import NotificationDropdown from "./NotificationDropdown";
 import MobileNavigation from "./MobileNavigation";
 import TopAnnouncementBar from "./TopAnnouncementBar";
 import MegaNavigation from "./MegaNavigation";
+import { selectCartCount } from "../../redux/slices/cartSlice";
 
 export default function MainHeader() {
   const [isSticky, setIsSticky] = useState(false);
@@ -20,6 +22,10 @@ export default function MainHeader() {
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isCompareOpen, setIsCompareOpen] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  const wishlistCount = useSelector(state => state.wishlist.items.length);
+  const cartCount = useSelector(selectCartCount);
+  const compareCount = useSelector(state => state.compare.items.length);
 
   // Sticky header effect
   useEffect(() => {
@@ -81,9 +87,11 @@ export default function MainHeader() {
               className="relative hover:text-primary transition-colors"
             >
               <FiHeart size={20} />
-              <span className="absolute -top-2 -right-2 bg-danger text-danger-foreground text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
-                3
-              </span>
+              {wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-danger text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
             </button>
 
             <button
@@ -91,9 +99,11 @@ export default function MainHeader() {
               className="relative hover:text-primary transition-colors hidden sm:block"
             >
               <FiColumns size={20} />
-              <span className="absolute -top-2 -right-2 bg-warning text-warning-foreground text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
-                2
-              </span>
+              {compareCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-warning text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
+                  {compareCount}
+                </span>
+              )}
             </button>
 
             <button
@@ -101,9 +111,11 @@ export default function MainHeader() {
               className="relative hover:text-primary transition-colors"
             >
               <FiShoppingCart size={20} />
-              <span className="absolute -top-2 -right-2 bg-primary text-primary-foreground text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
-                2
-              </span>
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
             </button>
 
             <UserDropdown />

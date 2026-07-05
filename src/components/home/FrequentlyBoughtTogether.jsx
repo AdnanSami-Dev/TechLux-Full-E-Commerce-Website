@@ -6,7 +6,14 @@ import { frequentlyBoughtProducts } from "../../data/products";
 import Button from "../ui/Button";
 import { FiPlus, FiArrowRight } from "react-icons/fi";
 
-export default function FrequentlyBoughtTogether() {
+export default function FrequentlyBoughtTogether({
+  onQuickView,
+  onWishlistToggle,
+  onCompareToggle,
+  onAddToCart,
+  wishlist = [],
+  compareList = [],
+}) {
   return (
     <section className="py-12 md:py-16">
       <Container>
@@ -20,7 +27,17 @@ export default function FrequentlyBoughtTogether() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <ProductCard product={product} />
+              <ProductCard
+                product={{
+                  ...product,
+                  isWishlisted: wishlist.includes(product.id),
+                  isCompared: compareList.includes(product.id),
+                }}
+                onQuickView={onQuickView}
+                onWishlistToggle={onWishlistToggle}
+                onCompareToggle={onCompareToggle}
+                onAddToCart={onAddToCart}
+              />
               {index < frequentlyBoughtProducts.length - 1 && (
                 <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2">
                   <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">

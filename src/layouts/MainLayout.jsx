@@ -3,6 +3,7 @@ import Footer from "../components/layout/Footer";
 import ScrollProgress from "../components/layout/ScrollProgress";
 import BackToTop from "../components/layout/BackToTop";
 import FloatingHelp from "../components/layout/FloatingHelp";
+import FloatingCart from "../components/layout/FloatingCart";
 
 export default function MainLayout({ children }) {
   return (
@@ -13,6 +14,7 @@ export default function MainLayout({ children }) {
       <Footer />
       <BackToTop />
       <FloatingHelp />
+      <FloatingCart />
     </div>
   );
 }
