@@ -14,7 +14,7 @@ export default function FloatingHelp() {
   ];
 
   return (
-    <div className="fixed right-4 bottom-20 z-40">
+    <div className="fixed right-4 sm:right-6 bottom-6 z-40">
       <AnimatePresence>
         {isOpen && (
           <motion.div

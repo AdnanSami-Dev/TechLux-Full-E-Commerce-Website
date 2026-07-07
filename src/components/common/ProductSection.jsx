@@ -16,11 +16,6 @@ export default function ProductSection({
   viewAllText = "View All",
   layout = "grid",
   onQuickView,
-  onWishlistToggle,
-  onCompareToggle,
-  onAddToCart,
-  wishlist = [],
-  compareList = [],
 }) {
   return (
     <section className="py-12 md:py-16">
@@ -39,17 +34,11 @@ export default function ProductSection({
               }}
             >
               {products.map((product) => (
-                <SwiperSlide key={product.id}>
+                <SwiperSlide key={product.id} className="flex">
                   <ProductCard
-                    product={{
-                      ...product,
-                      isWishlisted: wishlist.includes(product.id),
-                      isCompared: compareList.includes(product.id),
-                    }}
+                    product={product}
                     onQuickView={onQuickView}
-                    onWishlistToggle={onWishlistToggle}
-                    onCompareToggle={onCompareToggle}
-                    onAddToCart={onAddToCart}
+                    className="h-full"
                   />
                 </SwiperSlide>
               ))}
@@ -63,17 +52,12 @@ export default function ProductSection({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="flex"
                 >
                   <ProductCard
-                    product={{
-                      ...product,
-                      isWishlisted: wishlist.includes(product.id),
-                      isCompared: compareList.includes(product.id),
-                    }}
+                    product={product}
                     onQuickView={onQuickView}
-                    onWishlistToggle={onWishlistToggle}
-                    onCompareToggle={onCompareToggle}
-                    onAddToCart={onAddToCart}
+                    className="h-full"
                   />
                 </motion.div>
               ))}

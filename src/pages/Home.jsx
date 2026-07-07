@@ -23,119 +23,27 @@ import ProductQuickView from "../components/cards/ProductQuickView";
 
 function Home() {
   const [quickViewProduct, setQuickViewProduct] = useState(null);
-  const [wishlist, setWishlist] = useState([]);
-  const [compareList, setCompareList] = useState([]);
 
   const handleQuickView = (product) => setQuickViewProduct(product);
   const handleCloseQuickView = () => setQuickViewProduct(null);
-
-  const handleWishlistToggle = (product) => {
-    setWishlist((prev) =>
-      prev.includes(product.id)
-        ? prev.filter((id) => id !== product.id)
-        : [...prev, product.id]
-    );
-  };
-
-  const handleCompareToggle = (product) => {
-    setCompareList((prev) =>
-      prev.includes(product.id)
-        ? prev.filter((id) => id !== product.id)
-        : [...prev, product.id]
-    );
-  };
-
-  const handleAddToCart = (product) => {
-    console.log("Added to cart:", product.name);
-  };
 
   return (
     <MainLayout>
       <HeroSection />
       <Brands />
-      <FlashSale
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
-      <TodaysDeal
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
-      <TrendingProducts
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
-      <FeaturedProducts
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
-      <TopRated
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
-      <BestSellers
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
-      <NewArrivals
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
+      <FlashSale onQuickView={handleQuickView} />
+      <TodaysDeal onQuickView={handleQuickView} />
+      <TrendingProducts onQuickView={handleQuickView} />
+      <FeaturedProducts onQuickView={handleQuickView} />
+      <TopRated onQuickView={handleQuickView} />
+      <BestSellers onQuickView={handleQuickView} />
+      <NewArrivals onQuickView={handleQuickView} />
       <AdvertisementBanner />
       <CampaignBanner />
       <ShopByCategory />
-      <RecommendedProducts
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
-      <FrequentlyBoughtTogether
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
-      <RecentlyViewed
-        onQuickView={handleQuickView}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
-        onAddToCart={handleAddToCart}
-        wishlist={wishlist}
-        compareList={compareList}
-      />
+      <RecommendedProducts onQuickView={handleQuickView} />
+      <FrequentlyBoughtTogether onQuickView={handleQuickView} />
+      <RecentlyViewed onQuickView={handleQuickView} />
       <Testimonials />
       <InstagramFeed />
       <PartnerBrands />
@@ -145,9 +53,6 @@ function Home() {
         product={quickViewProduct}
         isOpen={!!quickViewProduct}
         onClose={handleCloseQuickView}
-        onAddToCart={handleAddToCart}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
       />
     </MainLayout>
   );

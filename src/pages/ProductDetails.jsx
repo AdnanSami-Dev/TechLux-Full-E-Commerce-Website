@@ -221,9 +221,9 @@ export default function ProductDetails() {
                 size="lg"
                 leftIcon={<FiRepeat />}
                 onClick={handleCompareToggle}
-                className={compareList.includes(product.id) ? "bg-primary/10 text-primary border-primary/30" : ""}
+                className={isCompared ? "bg-primary/10 text-primary border-primary/30" : ""}
               >
-                {compareList.includes(product.id) ? "Compared" : "Compare"}
+                {isCompared ? "Compared" : "Compare"}
               </Button>
             </div>
           </div>
@@ -245,8 +245,8 @@ export default function ProductDetails() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map((p) => (
-                <Link to={`/product/${p.id}`} key={p.id}>
-                  <ProductCard product={p} />
+                <Link to={`/product/${p.id}`} key={p.id} className="flex">
+                  <ProductCard product={p} className="h-full" />
                 </Link>
               ))}
             </div>
@@ -262,8 +262,8 @@ export default function ProductDetails() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {recentlyViewed.filter((p) => p.id !== product.id).slice(0, 4).map((p) => (
-                <Link to={`/product/${p.id}`} key={p.id}>
-                  <ProductCard product={p} />
+                <Link to={`/product/${p.id}`} key={p.id} className="flex">
+                  <ProductCard product={p} className="h-full" />
                 </Link>
               ))}
             </div>
@@ -281,8 +281,8 @@ export default function ProductDetails() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {shopProducts.filter((p) => p.id !== product.id).slice(0, 4).map((p) => (
-              <Link to={`/product/${p.id}`} key={p.id}>
-                <ProductCard product={p} />
+              <Link to={`/product/${p.id}`} key={p.id} className="flex">
+                <ProductCard product={p} className="h-full" />
               </Link>
             ))}
           </div>

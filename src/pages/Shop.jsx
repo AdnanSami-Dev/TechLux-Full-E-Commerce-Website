@@ -22,8 +22,6 @@ export default function Shop() {
   const [currentPage, setCurrentPage] = useState(1);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
-  const [wishlist, setWishlist] = useState([]);
-  const [compareList, setCompareList] = useState([]);
 
   const productsPerPage = 12;
 
@@ -106,26 +104,6 @@ export default function Shop() {
   const handleQuickView = (product) => setQuickViewProduct(product);
   const handleCloseQuickView = () => setQuickViewProduct(null);
 
-  const handleWishlistToggle = (product) => {
-    setWishlist((prev) =>
-      prev.includes(product.id)
-        ? prev.filter((id) => id !== product.id)
-        : [...prev, product.id]
-    );
-  };
-
-  const handleCompareToggle = (product) => {
-    setCompareList((prev) =>
-      prev.includes(product.id)
-        ? prev.filter((id) => id !== product.id)
-        : [...prev, product.id]
-    );
-  };
-
-  const handleAddToCart = (product) => {
-    console.log("Added to cart:", product.name);
-  };
-
   const handleClearFilters = () => {
     setFilters({
       category: "All Categories",
@@ -183,18 +161,13 @@ export default function Shop() {
               {viewMode === "grid" ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {paginatedProducts.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={{
-                        ...product,
-                        isWishlisted: wishlist.includes(product.id),
-                        isCompared: compareList.includes(product.id),
-                      }}
-                      onWishlistToggle={handleWishlistToggle}
-                      onCompareToggle={handleCompareToggle}
-                      onQuickView={handleQuickView}
-                      onAddToCart={handleAddToCart}
-                    />
+                    <div key={product.id} className="flex">
+                      <ProductCard
+                        product={product}
+                        onQuickView={handleQuickView}
+                        className="h-full"
+                      />
+                    </div>
                   ))}
                 </div>
               ) : (
@@ -202,15 +175,8 @@ export default function Shop() {
                   {paginatedProducts.map((product) => (
                     <ProductListItem
                       key={product.id}
-                      product={{
-                        ...product,
-                        isWishlisted: wishlist.includes(product.id),
-                        isCompared: compareList.includes(product.id),
-                      }}
-                      onWishlistToggle={handleWishlistToggle}
-                      onCompareToggle={handleCompareToggle}
+                      product={product}
                       onQuickView={handleQuickView}
-                      onAddToCart={handleAddToCart}
                     />
                   ))}
                 </div>
@@ -260,9 +226,6 @@ export default function Shop() {
         product={quickViewProduct}
         isOpen={!!quickViewProduct}
         onClose={handleCloseQuickView}
-        onAddToCart={handleAddToCart}
-        onWishlistToggle={handleWishlistToggle}
-        onCompareToggle={handleCompareToggle}
       />
     </MainLayout>
   );

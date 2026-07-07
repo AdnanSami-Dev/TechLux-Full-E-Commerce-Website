@@ -49,7 +49,7 @@ export default function ProductCard({
       dispatch(removeFromCompare(product.id));
       toast.success('Removed from compare');
     } else {
-      if (compareItems.length >= 4) {
+      if (compareList.length >= 4) {
         toast.error('You can only compare up to 4 products');
         return;
       }
@@ -80,7 +80,7 @@ export default function ProductCard({
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
       className={cn(
-        "group bg-card rounded-2xl shadow-sm hover:shadow-xl overflow-hidden border border-border",
+        "group bg-card rounded-2xl shadow-sm hover:shadow-xl overflow-hidden border border-border flex flex-col h-full",
         variant === "featured" && "border-primary/20",
         className
       )}
@@ -172,7 +172,7 @@ export default function ProductCard({
       </div>
 
       {/* Content Section */}
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-grow">
         {/* Category */}
         <p className="text-sm text-text-muted mb-1">{product.category}</p>
 
@@ -215,11 +215,14 @@ export default function ProductCard({
           {product.freeDelivery !== false && <DeliveryBadge free={true} />}
         </div>
 
+        {/* Spacer to push button to bottom */}
+        <div className="mt-auto"></div>
+
         {/* Add to Cart Button */}
         <Button
           variant="primary"
           className="w-full"
-          size={variant === "compact" ? "sm" : "default"}
+          size={variant === "compact" ? "sm" : "md"}
           onClick={handleAddToCart}
           leftIcon={<FiShoppingCart className="w-4 h-4" />}
         >

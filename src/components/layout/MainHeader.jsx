@@ -4,25 +4,25 @@ import Button from "../ui/Button";
 import Input from "../ui/Input";
 import { FiSearch, FiHeart, FiShoppingCart, FiColumns, FiMenu } from "react-icons/fi";
 import { useSelector } from "react-redux";
-import SearchModal from "./SearchModal";
-import CartDrawer from "./CartDrawer";
-import WishlistDrawer from "./WishlistDrawer";
-import CompareDrawer from "./CompareDrawer";
 import UserDropdown from "./UserDropdown";
 import NotificationDropdown from "./NotificationDropdown";
-import MobileNavigation from "./MobileNavigation";
 import TopAnnouncementBar from "./TopAnnouncementBar";
 import MegaNavigation from "./MegaNavigation";
 import { selectCartCount } from "../../redux/slices/cartSlice";
 
-export default function MainHeader() {
+export default function MainHeader({
+  isSearchOpen,
+  setIsSearchOpen,
+  isCartOpen,
+  setIsCartOpen,
+  isWishlistOpen,
+  setIsWishlistOpen,
+  isCompareOpen,
+  setIsCompareOpen,
+  isMobileNavOpen,
+  setIsMobileNavOpen,
+}) {
   const [isSticky, setIsSticky] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
-  const [isCompareOpen, setIsCompareOpen] = useState(false);
-  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-
   const wishlistCount = useSelector(state => state.wishlist.items.length);
   const cartCount = useSelector(selectCartCount);
   const compareCount = useSelector(state => state.compare.items.length);
@@ -125,13 +125,6 @@ export default function MainHeader() {
         {/* Mega Navigation */}
         <MegaNavigation />
       </header>
-
-      {/* Modals & Drawers */}
-      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-      <WishlistDrawer isOpen={isWishlistOpen} onClose={() => setIsWishlistOpen(false)} />
-      <CompareDrawer isOpen={isCompareOpen} onClose={() => setIsCompareOpen(false)} />
-      <MobileNavigation isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
     </>
   );
 }

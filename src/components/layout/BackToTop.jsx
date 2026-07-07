@@ -23,7 +23,7 @@ export default function BackToTop() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          className="fixed right-4 bottom-4 z-40"
+          className="fixed left-4 bottom-4 z-40"
         >
           <Button size="icon" onClick={scrollToTop}>
             <FiArrowUp size={20} />

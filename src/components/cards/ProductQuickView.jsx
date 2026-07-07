@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiShoppingCart, FiHeart, FiRepeat, FiX } from "react-icons/fi";
 import Modal from "../ui/Modal";
@@ -13,18 +13,29 @@ import {
   DeliveryBadge,
 } from "./ProductBadges";
 import { cn } from "../../utils/cn";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWishlist, removeFromWishlist } from "../../redux/slices/wishlistSlice";
+import { addToCart } from "../../redux/slices/cartSlice";
+import { addToCompare, removeFromCompare } from "../../redux/slices/compareSlice";
+import toast from "react-hot-toast";
 
 export default function ProductQuickView({
   product,
   isOpen,
   onClose,
-  onAddToCart,
-  onWishlistToggle,
-  onCompareToggle,
 }) {
-  const [isWishlisted, setIsWishlisted] = useState(product?.isWishlisted || false);
-  const [isCompared, setIsCompared] = useState(product?.isCompared || false);
+  const dispatch = useDispatch();
+  const wishlist = useSelector(state => state.wishlist.items);
+  const compareList = useSelector(state => state.compare.items);
+  const isWishlisted = product ? wishlist.some(item => item.id === product.id) : false;
+  const isCompared = product ? compareList.some(item => item.id === product.id) : false;
+  
   const [selectedImage, setSelectedImage] = useState(0);
+
+  // Reset selected image when product changes
+  useEffect(() => {
+    setSelectedImage(0);
+  }, [product?.id]);
 
   if (!product) return null;
 
@@ -32,17 +43,32 @@ export default function ProductQuickView({
   const savings = isDiscounted ? product.originalPrice - product.price : 0;
 
   const handleWishlist = () => {
-    setIsWishlisted(!isWishlisted);
-    if (onWishlistToggle) onWishlistToggle(product);
+    if (isWishlisted) {
+      dispatch(removeFromWishlist(product.id));
+      toast.success('Removed from wishlist');
+    } else {
+      dispatch(addToWishlist(product));
+      toast.success('Added to wishlist');
+    }
   };
 
   const handleCompare = () => {
-    setIsCompared(!isCompared);
-    if (onCompareToggle) onCompareToggle(product);
+    if (isCompared) {
+      dispatch(removeFromCompare(product.id));
+      toast.success('Removed from compare');
+    } else {
+      if (compareList.length >= 4) {
+        toast.error('You can only compare up to 4 products');
+        return;
+      }
+      dispatch(addToCompare(product));
+      toast.success('Added to compare');
+    }
   };
 
   const handleAddToCart = () => {
-    if (onAddToCart) onAddToCart(product);
+    dispatch(addToCart(product));
+    toast.success('Added to cart');
     onClose();
   };
 

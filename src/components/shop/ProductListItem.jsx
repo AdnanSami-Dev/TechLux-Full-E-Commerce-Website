@@ -12,17 +12,56 @@ import {
   DeliveryBadge,
 } from "../cards/ProductBadges";
 import Button from "../ui/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { addToWishlist, removeFromWishlist } from "../../redux/slices/wishlistSlice";
+import { addToCart } from "../../redux/slices/cartSlice";
+import { addToCompare, removeFromCompare } from "../../redux/slices/compareSlice";
+import toast from "react-hot-toast";
 
 export default function ProductListItem({
   product,
-  onWishlistToggle,
-  onCompareToggle,
   onQuickView,
-  onAddToCart,
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const dispatch = useDispatch();
+  const wishlist = useSelector(state => state.wishlist.items);
+  const compareList = useSelector(state => state.compare.items);
+  const isWishlisted = wishlist.some(item => item.id === product.id);
+  const isCompared = compareList.some(item => item.id === product.id);
   const isDiscounted = product.discount && product.originalPrice;
   const savings = isDiscounted ? product.originalPrice - product.price : 0;
+
+  const handleWishlist = (e) => {
+    e.stopPropagation();
+    if (isWishlisted) {
+      dispatch(removeFromWishlist(product.id));
+      toast.success('Removed from wishlist');
+    } else {
+      dispatch(addToWishlist(product));
+      toast.success('Added to wishlist');
+    }
+  };
+
+  const handleCompare = (e) => {
+    e.stopPropagation();
+    if (isCompared) {
+      dispatch(removeFromCompare(product.id));
+      toast.success('Removed from compare');
+    } else {
+      if (compareList.length >= 4) {
+        toast.error('You can only compare up to 4 products');
+        return;
+      }
+      dispatch(addToCompare(product));
+      toast.success('Added to compare');
+    }
+  };
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    dispatch(addToCart(product));
+    toast.success('Added to cart');
+  };
 
   return (
     <motion.div
@@ -100,7 +139,7 @@ export default function ProductListItem({
           <Button
             variant="primary"
             leftIcon={<FiShoppingCart className="w-4 h-4" />}
-            onClick={() => onAddToCart(product)}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </Button>
@@ -109,22 +148,22 @@ export default function ProductListItem({
             <Button
               variant="outline"
               size="icon"
-              onClick={() => onWishlistToggle(product)}
+              onClick={handleWishlist}
               className={cn(
-                product.isWishlisted ? "bg-danger text-white border-danger" : ""
+                isWishlisted ? "bg-danger text-white border-danger" : ""
               )}
             >
               <FiHeart
-                className={cn("w-4 h-4", product.isWishlisted && "fill-current")}
+                className={cn("w-4 h-4", isWishlisted && "fill-current")}
               />
             </Button>
 
             <Button
               variant="outline"
               size="icon"
-              onClick={() => onCompareToggle(product)}
+              onClick={handleCompare}
               className={cn(
-                product.isCompared ? "bg-primary text-white border-primary" : ""
+                isCompared ? "bg-primary text-white border-primary" : ""
               )}
             >
               <FiRepeat className="w-4 h-4" />
@@ -133,7 +172,10 @@ export default function ProductListItem({
             <Button
               variant="outline"
               size="icon"
-              onClick={() => onQuickView(product)}
+              onClick={(e) => {
+                e.stopPropagation();
+                onQuickView(product);
+              }}
             >
               <FiEye className="w-4 h-4" />
             </Button>
