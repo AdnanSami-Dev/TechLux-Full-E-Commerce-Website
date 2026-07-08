@@ -22,7 +22,7 @@ export default function FrequentlyBoughtTogether({ onQuickView }) {
   return (
     <section className="py-12 md:py-16">
       <Container>
-        <SectionTitle title="🛒 Frequently Bought Together" subtitle="Save more when you buy together!" />
+        <SectionTitle title="Frequently Bought Together" subtitle="Save more when you buy together!" />
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {frequentlyBoughtProducts.map((product, index) => (
             <motion.div

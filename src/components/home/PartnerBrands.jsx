@@ -10,14 +10,15 @@ export default function PartnerBrands() {
   return (
     <section className="py-12 md:py-16 bg-card border-y border-border">
       <Container>
-        <SectionTitle title="🤝 Partner Brands" subtitle="Trusted by millions!" />
+        <SectionTitle title="Partner Brands" subtitle="Trusted by millions!" />
         <div className="mt-10">
           <Swiper
             modules={[Autoplay]}
             slidesPerView={2}
             spaceBetween={30}
             loop
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            autoplay={{ delay: 500, disableOnInteraction: false }}
+            speed={1000}
             breakpoints={{
               640: { slidesPerView: 4 },
               1024: { slidesPerView: 8 },

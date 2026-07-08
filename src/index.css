@@ -101,3 +101,5 @@ code {
 .swiper-pagination-bullet-active {
   @apply !bg-primary !opacity-100 !scale-125;
 }
+
+

@@ -144,7 +144,7 @@ export default function Shop() {
 
           <div className="flex gap-8">
             {/* Sidebar (Desktop) */}
-            <aside className="hidden md:block w-72 flex-shrink-0">
+            <aside className="hidden md:block w-72 shrink-0">
               <FilterSidebar
                 filters={filters}
                 setFilters={setFilters}

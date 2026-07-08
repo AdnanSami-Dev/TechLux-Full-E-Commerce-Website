@@ -34,7 +34,7 @@ export default function ProductSection({
               }}
             >
               {products.map((product) => (
-                <SwiperSlide key={product.id} className="flex">
+                <SwiperSlide key={product.id} className="h-auto! flex">
                   <ProductCard
                     product={product}
                     onQuickView={onQuickView}

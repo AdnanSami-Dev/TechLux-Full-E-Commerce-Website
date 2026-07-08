@@ -11,7 +11,7 @@ export default function PromotionalBanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-6 md:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6"
+          className="bg-linear-to-r from-primary to-secondary rounded-2xl p-6 md:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div>
             <h3 className="text-2xl md:text-3xl font-bold mb-2">Free Shipping on Orders Over $100</h3>

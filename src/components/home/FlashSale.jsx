@@ -11,9 +11,9 @@ import Button from "../ui/Button";
 
 export default function FlashSale({ onQuickView }) {
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-r from-danger/5 to-warning/5">
+    <section className="py-12 md:py-16 bg-linear-to-r from-danger/5 to-warning/5">
       <Container>
-        <SectionTitle title="⚡ Flash Sale" subtitle="Limited time offers! Grab them before they're gone" />
+        <SectionTitle title="Flash Sale" subtitle="Limited time offers! Grab them before they're gone" />
         <div className="mt-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="text-lg font-semibold text-danger">Ending in:</div>
@@ -43,7 +43,7 @@ export default function FlashSale({ onQuickView }) {
           className="w-full"
         >
           {flashSaleProducts.map((product) => (
-            <SwiperSlide key={product.id} className="flex">
+            <SwiperSlide key={product.id} className="h-auto! flex">
               <ProductCard product={product} onQuickView={onQuickView} className="h-full" />
             </SwiperSlide>
           ))}

@@ -39,14 +39,14 @@ export default function MobileNavigation({ isOpen, onClose }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/50 z-[70]"
+            className="fixed inset-0 bg-black/50 z-70"
           />
           {/* Nav */}
           <motion.div
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
-            className="fixed left-0 top-0 h-full w-80 bg-card border-r border-border shadow-2xl z-[71] overflow-y-auto"
+            className="fixed left-0 top-0 h-full w-80 bg-card border-r border-border shadow-2xl z-71 overflow-y-auto"
           >
             <div className="p-4 border-b border-border flex items-center justify-between">
               <h3 className="text-lg font-semibold text-secondary">Menu</h3>

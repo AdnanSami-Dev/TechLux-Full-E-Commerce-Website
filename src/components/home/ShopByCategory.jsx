@@ -15,7 +15,7 @@ export default function ShopByCategory() {
   return (
     <section className="py-12 md:py-16 bg-card border-y border-border">
       <Container>
-        <SectionTitle title="🛍️ Shop By Category" subtitle="Browse products by category!" />
+        <SectionTitle title="Shop By Category" subtitle="Browse products by category!" />
         <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((category, index) => (
             <motion.div
@@ -33,7 +33,7 @@ export default function ShopByCategory() {
                   alt={category.name}
                   className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-secondary to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
                   <div className="text-white text-lg font-semibold">{category.name}</div>
                 </div>

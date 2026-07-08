@@ -29,7 +29,8 @@ export default function Brands() {
             1024: { slidesPerView: 8 },
           }}
           loop
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          autoplay={{ delay: 500, disableOnInteraction: false }}
+          speed={1000}
         >
           {brands.map((brand, i) => (
             <SwiperSlide key={i}>

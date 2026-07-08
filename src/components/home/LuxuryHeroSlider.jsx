@@ -41,16 +41,16 @@ export default function LuxuryHeroSlider() {
   return (
     <section className="overflow-hidden bg-secondary/5">
       <Swiper
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay, Pagination]}
         slidesPerView={1}
         loop
         autoplay={{
-          delay: 5000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
+        speed={2000}
         pagination={{ clickable: true }}
-        navigation
-        className="h-[500px] md:h-[600px]"
+        className="h-125 md:h-150"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id} className="relative">
@@ -59,7 +59,7 @@ export default function LuxuryHeroSlider() {
               alt={slide.title}
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/60 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-r from-secondary via-secondary/60 to-transparent" />
             <Container className="relative h-full flex items-center">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}

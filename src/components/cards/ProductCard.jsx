@@ -172,7 +172,7 @@ export default function ProductCard({
       </div>
 
       {/* Content Section */}
-      <div className="p-5 flex flex-col flex-grow">
+      <div className="p-5 flex flex-col grow">
         {/* Category */}
         <p className="text-sm text-text-muted mb-1">{product.category}</p>
 

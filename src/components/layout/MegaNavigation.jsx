@@ -78,7 +78,7 @@ export default function MegaNavigation() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full left-0 w-[700px] bg-card shadow-2xl border border-border rounded-xl overflow-hidden z-50"
+                  className="absolute top-full left-0 w-175 bg-card shadow-2xl border border-border rounded-xl overflow-hidden z-50"
                 >
                   <div className="grid grid-cols-3">
                     <div className="col-span-2 p-6">
@@ -95,7 +95,7 @@ export default function MegaNavigation() {
                         ))}
                       </div>
                     </div>
-                    <div className="bg-gradient-to-br from-primary/20 to-secondary/20 p-6 flex items-center justify-center">
+                    <div className="bg-linear-to-br from-primary/20 to-secondary/20 p-6 flex items-center justify-center">
                       <img src={cat.image} alt={cat.name} className="w-full h-48 object-cover rounded-lg" />
                     </div>
                   </div>

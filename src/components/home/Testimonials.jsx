@@ -16,7 +16,7 @@ export default function Testimonials() {
   return (
     <section className="py-12 md:py-16 bg-secondary/5">
       <Container>
-        <SectionTitle title="💬 Testimonials" subtitle="What our customers are saying!" />
+        <SectionTitle title="Testimonials" subtitle="What our customers are saying!" />
         <div className="mt-10">
           <Swiper
             modules={[Autoplay, Navigation]}
@@ -31,16 +31,16 @@ export default function Testimonials() {
             }}
           >
             {testimonials.map((testimonial, index) => (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} className="h-auto flex">
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="bg-card p-8 rounded-2xl shadow-sm border border-border"
+                  className="bg-card p-8 rounded-2xl shadow-sm border border-border flex flex-col w-full h-full"
                 >
                   <div className="text-yellow-400 text-2xl mb-4">★★★★★</div>
-                  <p className="text-text-secondary mb-6">{testimonial.text}</p>
-                  <div className="flex items-center gap-4">
+                  <p className="text-text-secondary  mb-6 grow">{testimonial.text}</p>
+                  <div className="flex items-center gap-4 mt-auto">
                     <img src={testimonial.image} alt={testimonial.name} className="w-14 h-14 rounded-full object-cover" />
                     <div>
                       <div className="font-semibold text-secondary">{testimonial.name}</div>

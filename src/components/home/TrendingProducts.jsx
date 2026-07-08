@@ -4,7 +4,7 @@ import { trendingProducts } from "../../data/products";
 export default function TrendingProducts() {
   return (
     <ProductSection
-      title="🚀 Trending Products"
+      title="Trending Products"
       subtitle="What everyone's buying right now!"
       products={trendingProducts}
       layout="grid"

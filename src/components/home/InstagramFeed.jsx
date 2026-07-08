@@ -16,7 +16,7 @@ export default function InstagramFeed() {
   return (
     <section className="py-12 md:py-16">
       <Container>
-        <SectionTitle title="📷 Follow Us On Instagram" subtitle="@TechLuxOfficial" />
+        <SectionTitle title="Follow Us On Instagram" subtitle="@TechLuxOfficial" />
         <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {instagramPosts.map((image, index) => (
             <motion.div
